@@ -1,0 +1,38 @@
+<script language="Javascript">
+require.config({
+    "paths": {
+      "jquery-ui": "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui",
+      "sifter": "/++plone++uvc.plonewidgets/selectizejs/js/sifter",
+      "microplugin": "/++plone++uvc.plonewidgets/selectizejs/js/microplugin"
+    }
+  });
+
+  require([
+      'jquery', "jquery-ui", "sifter", "microplugin",
+      '/++plone++uvc.plonewidgets/selectizejs/js/selectize.js',
+    ], function() {
+    $('<tal:id replace="'#' + widget.htmlId()" />').selectize(
+    {
+    plugins: ['remove_button', 'drag_drop'],
+    items: <tal:chosen replace="widget.inputValue()" />
+    }
+    );
+    })
+
+</script>
+
+<tal:widget>
+  <select id="#" name="#" class="#" multiple="multiple"
+          tal:attributes="name widget.identifier;
+                          id widget.htmlId();
+                          class widget.htmlClass()">
+    <option value="#" selected="#"
+            tal:repeat="choice widget.renderableChoice()"
+            tal:attributes="value choice.token;
+                            selected choice.checked and 'selected' or None"
+            tal:content="choice.title" />
+  </select>
+  <input type="hidden" name="#" value="1"
+         tal:attributes="name string:${widget.identifier}.present" />
+</tal:widget>
+

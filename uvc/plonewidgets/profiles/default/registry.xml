@@ -2,10 +2,18 @@
 <registry>
   <records prefix="plone.resources/inout"
            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-    <value key="js">++plone++uvc.plone/multiselect/js/jquery.multi-select.js</value>
+    <value key="js">++plone++uvc.plonewidgets/multiselect/js/jquery.multi-select.js</value>
     <value key="css">
-      <element>++plone++uvc.plone/multiselect/css/multi-select.css</element>
+      <element>++plone++uvc.plonewidgets/multiselect/css/multi-select.css</element>
     </value>
     <value key="deps">jquery</value>
   </records>
+  
+  <records prefix="plone.resources/selectize"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <value key="css">
+      <element>++plone++uvc.plonewidgets/selectizejs/css/selectize.css</element>
+    </value>
+  </records>
+  
 </registry>
