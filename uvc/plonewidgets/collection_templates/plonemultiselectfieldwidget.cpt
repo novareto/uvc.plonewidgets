@@ -8,7 +8,7 @@ require.config({
     
   require([
    'jquery', 'jquery-ui',
-   '++plone++uvc.plone/multiselect/js/jquery.multi-select.js'
+   '++plone++uvc.plonewidgets/multiselect/js/jquery.multi-select.js'
    ], function($) {
    $('<tal:id replace="'#' + widget.htmlId()" />').multiSelect({sortable: true}).sortable();
 });
