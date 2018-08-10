@@ -7,10 +7,10 @@ from Products.CMFPlone.resources import add_resource_on_request
 from zeam.form.base.widgets import FieldWidget
 from zeam.form.ztk.widgets.choice import ChoiceField
 from zeam.form.ztk.interfaces import ICollectionField
-from zeam.form.base.interfaces import IWidget
+from zeam.form.base.interfaces import IWidget, IWidgetExtractor
 from zeam.form.ztk.widgets.collection import (
-    ListField, ChoiceField, MultiChoiceWidgetExtractor,
-    CollectionField, newCollectionWidgetFactory, MultiChoiceFieldWidget)
+    ListField, ChoiceField, CollectionField, MultiChoiceWidgetExtractor,
+    newCollectionWidgetFactory, MultiChoiceFieldWidget)
 
 
 class PloneFieldWidget(FieldWidget, Acquisition.Explicit):
@@ -57,4 +57,12 @@ grok.global_adapter(
 
 
 class Extractor(MultiChoiceWidgetExtractor):
-    grok.adapts(ListField, ChoiceField, Interface, Interface)
+    grok.name('INOUT')
+    grok.adapts(CollectionField, ChoiceField, Interface, Interface)
+
+
+grok.global_adapter(
+    newCollectionWidgetFactory(interface=IWidgetExtractor, mode='INOUT'),
+    adapts=(ICollectionField, Interface, Interface),
+    provides=IWidgetExtractor,
+    name='INOUT')
